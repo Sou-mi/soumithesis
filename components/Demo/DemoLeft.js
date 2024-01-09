@@ -10,14 +10,24 @@ const DemoLeft = ()=>{
         e.preventDefault()
         e.stopPropagation()
     }
-    const handleFileUpload = (event)=>{
-        console.log("File")
-        if (!event.dataTransfer.files || event.dataTransfer.files === 0) {
-            return; // User canceled file selection
+    const handleFileUpload = (event, type)=>{
+        let tempFile
+        if (type === "click"){
+            if (!event.target.files || event.target.files.length === 0) {
+                return; // User canceled file selection
+            }
+            tempFile = event.target.files[0]
         }
-        const files = Array.from(event.dataTransfer.files);
+        else if(type === "drag"){
+            if (!event.dataTransfer.files || event.dataTransfer.files.length === 0) {
+                return; // User canceled file selection
+            }
+            const files = Array.from(event.dataTransfer.files);
+            tempFile = files[0]
+        }
+        console.log(tempFile)
         // But We Will Only Use One File
-        setFile(files[0])
+        setFile(tempFile)
     }
 
 
@@ -39,7 +49,7 @@ const DemoLeft = ()=>{
                      }}
                      onDrop={(e) => {
                          preventDefaultHandler(e);
-                         handleFileUpload(e)
+                         handleFileUpload(e, "drag")
                          setHighlightDropZone(false);
                      }}>
                     <label htmlFor="dropzone-file"
@@ -53,12 +63,25 @@ const DemoLeft = ()=>{
                             </svg>
                             <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
                                 className="font-semibold">Click to upload</span> or drag and drop</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">PNG, JPG (MAX.
-                                224x224px)</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">PNG, JPG (224x224px)</p>
                         </div>
-                        <input id="dropzone-file" type="file" className="hidden"/>
+                        <input id="dropzone-file" type="file" className="hidden" onChange={(e)=>{
+                            handleFileUpload(e, "click")
+                        }}/>
                     </label>
                 </div>
+                {
+                    file && <div className={"flex flex-col gap-4"}>
+                        <p className={"font-bold"}>File Name:&nbsp;
+                            <span className={"font-normal"}>{file.name}</span>
+                        </p>
+                        <p className={"font-bold"}>File Size:&nbsp;
+                            <span className={"font-normal"}>{(file.size / (1024 * 1024)).toFixed(2)} MB</span>
+                        </p>
+                        <button className={"border-blue border-2 hover:bg-blue hover:text-white rounded-md pt-2 pb-2"}>Predict Image</button>
+                    </div>
+                }
+
             </div>
         </>
     )
