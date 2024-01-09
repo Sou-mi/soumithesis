@@ -17,8 +17,8 @@ const HomeComponent = ()=>{
                             </button>
                         </div>
                     </div>
-                    <div className={"text-white font-extralight"}>Deep AI is a free, open-source project from Deep Sarker, built on
-                        Tensorflow.
+                    <div className={"text-white font-extralight"}>Soumi's AI is a free, open-source project from Subhadra Soumi Sikder, built on
+                        Yolo Models.
                     </div>
                 </div>
             </div>
