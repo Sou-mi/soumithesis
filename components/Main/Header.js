@@ -4,10 +4,10 @@ const HeaderComponent = ()=>{
     return (
         <div className={"h-20 pl-12 pr-12 bg-white flex items-center font-sm text-2xl"}>
             <div className={"flex items-center"}>
-                <p>Deep AI</p>
+                <p>Soumi AI</p>
                 <Image src={arrowImage} alt={"Arrow Image"}/>
             </div>
-            <div>Deep Computer Vision</div>
+            <div>Soumi Computer Vision</div>
         </div>
     )
 }

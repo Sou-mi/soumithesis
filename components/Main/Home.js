@@ -7,7 +7,7 @@ const HomeComponent = ()=>{
             <div>
                 <div className={"bg-hero-content bg-contain h-136 flex flex-col items-center justify-around"}>
                     <div className={"flex flex-col items-center justify-center gap-8"}>
-                        <div className={"text-white text-6xl"}><strong>Deep</strong> Vision</div>
+                        <div className={"text-white text-6xl"}><strong>Soumi</strong> Vision</div>
                         <div className={"text-white font-light text-lg"}>An image processing platform for
                             building state-of-the-art models
                         </div>
